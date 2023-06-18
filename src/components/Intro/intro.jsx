@@ -1,6 +1,5 @@
 import React from "react";
 // import Rings from "../../single-page-developer-portfolio/starter-code/assets/images/pattern-rings.svg";
-import { Link } from "react-scroll";
 import img from "../../single-page-developer-portfolio/starter-code/assets/images/Dhananjai, Ayush_JPP0388.jpeg";
 
 const Intro = () => {
@@ -51,13 +50,10 @@ const Intro = () => {
                 here.
               </a>
             </p>
-            <Link
-              to="contact"
-              activeClass="active"
-              smooth={true}
-              spy={true}
-              offset={-200}
-              className=""
+            <a
+              href="https://drive.google.com/file/d/1NJSqBdkyj4pNVF1g-zTj8T-lObJ4wTdg/view?usp=sharing"
+              rel="noreferrer"
+              target="_blank"
             >
               <button
                 className="bg-transparent
@@ -68,7 +64,7 @@ const Intro = () => {
               >
                 Resume
               </button>
-            </Link>
+            </a>
           </div>
         </div>
         <div className="mx-8">
