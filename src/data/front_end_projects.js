@@ -10,7 +10,7 @@ const front_end_web = [
         "id":1,
         "projectName":"TravelScraps",
         "imageLocation":TravelScraps,
-        "projectDescription": "Built a social media site dedicated to traveling, featuring options for user registration as either a 'traveler' or a 'travel guide'.",
+        "projectDescription": "Built a social media site dedicated to traveling, featuring options for user registration as either a 'traveler' or a 'travel guide'. Users can make posts, 'like,' and comment.",
         "skills": "React.js, HTML, CSS, MongoDB",
         "repoUrl": "https://github.com/ayushdj/TravelScraps"
     },
