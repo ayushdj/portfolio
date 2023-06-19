@@ -33,9 +33,9 @@ const Intro = () => {
               I'm a software Engineer with a passion for creating full-stack
               applications that enhance user experience. After completing my
               undergraduate studies in Astrophysics, I am now pursuing a Masters
-              degree in Computer Science at Northeastern University. I have
-              worked as a Software Engineer at Oracle and Lutron Electronics and
-              as a Data Scientist/Data Analyst at SharkNinja.
+              degree in Computer Science at Northeastern University. Since then,
+              I have worked as a Software Engineer at Oracle and Lutron
+              Electronics and as a Data Scientist/Data Analyst at SharkNinja.
               <br />
               <br />
               In my spare time, I love to fiddle with front-end projects. I am
