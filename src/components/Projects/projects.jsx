@@ -35,7 +35,7 @@ const Projects = () => {
               <div className="p-4 flex-col bg-[#272728] shadow-lg rounded-lg h-full">
                 <div className="flex rounded-full text-center justify-center">
                   <img
-                    className="w-66 h-64 text-center "
+                    className="w-96 h-64 text-center object-fill rounded-lg shadow-xl"
                     src={each.imageLocation}
                     alt={"project image for " + each.projectName}
                   />
@@ -90,7 +90,7 @@ const Projects = () => {
               <div className="p-4 flex-col bg-[#272728] shadow-lg rounded-lg h-full">
                 <div className="flex rounded-full text-center justify-center">
                   <img
-                    className="w-66 h-64 text-center "
+                    className="w-96 h-64 text-center object-fill rounded-lg shadow-xl"
                     src={each.imageLocation}
                     alt={"project image for " + each.projectName}
                   />
@@ -145,7 +145,7 @@ const Projects = () => {
               <div className="p-4 flex-col bg-[#272728] shadow-lg rounded-lg h-full">
                 <div className="flex rounded-full text-center justify-center">
                   <img
-                    className="w-66 h-64 text-center "
+                    className="w-96 h-64 text-center object-fill rounded-lg shadow-xl"
                     src={each.imageLocation}
                     alt={"project image for " + each.projectName}
                   />
