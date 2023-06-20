@@ -1,4 +1,5 @@
 import React from "react";
+// import Rings from "../../single-page-developer-portfolio/starter-code/assets/images/pattern-rings.svg";
 import img from "../../single-page-developer-portfolio/starter-code/assets/images/Dhananjai, Ayush_JPP0388.jpeg";
 
 const Intro = () => {
@@ -6,11 +7,16 @@ const Intro = () => {
     <>
       <section className="max-w-7xl mx-auto mt-12" id="about">
         <div className="">
+          {/* <img
+            className="absolute  xs:invisible md:visible top-[200px] max-w-[1000px] xl:left-[-4px] xl:top-[220px] z-0"
+            src={Rings}
+            alt=""
+          /> */}
         </div>
         <div className="flex xs:flex-col lg:flex-row-reverse justify-between items-center text-white px-8 mx-auto mb-16 z-20">
           <div className="justify-start">
             <img
-              className="flex flex-1 max-h-[400px] md:max-h-[550px] xl:max-h-[700px] rounded-lg" 
+              className="flex rounded-lg flex-1 max-h-[400px] md:max-h-[550px] xl:max-h-[700px]"
               src={img}
               alt="hero_image"
             />
