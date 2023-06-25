@@ -75,7 +75,7 @@ const Timeline = () => {
               <i class="fa-solid fa-location-dot"></i> Boston, MA USA
             </h4>
             <p className="text-[#bcbdc2]">
-              C++, Python, Jenkins, Bitbucket, Jira Confleunce
+              C++, Python, Jenkins, Bitbucket, Jira, Confleunce
             </p>
           </VerticalTimelineElement>
           <VerticalTimelineElement
