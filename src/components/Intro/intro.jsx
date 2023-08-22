@@ -51,7 +51,7 @@ const Intro = () => {
               </a>
             </p>
             <a
-              href="https://drive.google.com/file/d/1NJSqBdkyj4pNVF1g-zTj8T-lObJ4wTdg/view?usp=sharing"
+              href="https://drive.google.com/file/d/1YeMMVjbn9FSz4LDv3ZoqqWONK-O6vzIn/view?usp=sharing"
               rel="noreferrer"
               target="_blank"
             >
