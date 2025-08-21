@@ -18,7 +18,7 @@ const Intro = () => {
             <img
               className="flex rounded-lg flex-1 max-h-[400px] md:max-h-[550px] xl:max-h-[700px]"
               src={img}
-              alt="hero_image"
+              alt="ayush_dhananjai"
             />
           </div>
 
@@ -45,13 +45,13 @@ const Intro = () => {
                 className="underline underline-offset-[5px] decoration-[#4EE1A0]"
                 rel="noreferrer"
                 target="_blank"
-                href="https://www.youtube.com/watch?v=elEOTyzhesU&t=156s&ab_channel=AHMomentProductions"
+                href="https://www.youtube.com/watch?v=tSTMZNueUsI"
               >
                 here.
               </a>
             </p>
             <a
-              href="https://drive.google.com/file/d/1YeMMVjbn9FSz4LDv3ZoqqWONK-O6vzIn/view?usp=sharing"
+              href="https://drive.google.com/file/d/1vY-utTo-d5jJ66VA3XHnpbTKfnL--C9B/view?usp=sharing"
               rel="noreferrer"
               target="_blank"
             >

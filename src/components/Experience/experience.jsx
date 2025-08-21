@@ -8,6 +8,7 @@ import OracleLogo from "../../single-page-developer-portfolio/starter-code/asset
 import LutronLogo from "../../single-page-developer-portfolio/starter-code/assets/images/pngegg.png";
 import Daco_768955 from "../../single-page-developer-portfolio/starter-code/assets/images/Daco_768955.png";
 import SharkNinja from "../../single-page-developer-portfolio/starter-code/assets/images/Shark_logo_black.png";
+import CohereHealthLogo from "../../single-page-developer-portfolio/starter-code/assets/images/CohereHealth.png";
 // import NortheasternSVG from './northeastern.svg'
 // import
 
@@ -19,6 +20,66 @@ const Timeline = () => {
       </h1>
       <section className="max-w-6xl mx-auto mt-12 mb-16">
         <VerticalTimeline>
+        <VerticalTimelineElement
+            className="vertical-timeline-element--work"
+            contentStyle={{ background: "#272728", color: "#fff" }}
+            contentArrowStyle={{ borderRight: "7px solid  #272728" }}
+            date="June 2024 - Present"
+            iconStyle={{ background: "#C74634", color: "#fff" }}
+            icon={
+              <a
+                href="https://www.oracle.com/health"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src={OracleLogo} alt="oracle logo"></img>
+              </a>
+            }
+          >
+            <h3 className="vertical-timeline-element-title !important text-[#d9dade] text-2xl text-bold decoration-[#4EE1A0] font-bold">
+              Applications Developer 2/Scrum Master
+            </h3>
+            <h3 className="vertical-timeline-element-title text-[#d9dade]">
+              Oracle - Health & AI
+            </h3>
+            <h4 className="vertical-timeline-element-subtitle text-[#d9dade]">
+              <i class="fa-solid fa-location-dot"></i> Burlington, MA USA
+            </h4>
+            <p className="text-[#bcbdc2]">
+              JavaScript, HTML, CSS, Node.js, Knockout.js, Java, MySQL, J2EE,
+              REST API's, Docker, Kubernetes, TestNG, Jenkins, GitLab, Jira, Confluence
+            </p>
+          </VerticalTimelineElement>
+        <VerticalTimelineElement
+            className="vertical-timeline-element--work"
+            contentStyle={{ background: "#272728", color: "#fff" }}
+            contentArrowStyle={{ borderRight: "7px solid  #272728" }}
+            date="October 2023 - June 2024"
+            iconStyle={{ background: "#FFFFFF", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}
+            icon={
+              <a
+                href="https://coherehealth.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src={CohereHealthLogo} alt="oracle logo"></img>
+              </a>
+            }
+          >
+            <h3 className="vertical-timeline-element-title !important text-[#d9dade] text-2xl text-bold decoration-[#4EE1A0] font-bold">
+              Software Engineer 1
+            </h3>
+            <h3 className="vertical-timeline-element-title text-[#d9dade]">
+              Cohere Health
+            </h3>
+            <h4 className="vertical-timeline-element-subtitle text-[#d9dade]">
+              <i class="fa-solid fa-location-dot"></i> Boston, MA USA
+            </h4>
+            <p className="text-[#bcbdc2]">
+              JavaScript, HTML, CSS, Node.js, React.js, Groovy/Grails, Micronaut,
+              MongoDB, AWS S3/EC2, Cypress, Kibana, Sentry, GitHub, Jira, Confluence
+            </p>
+          </VerticalTimelineElement>
           <VerticalTimelineElement
             className="vertical-timeline-element--work"
             contentStyle={{ background: "#272728", color: "#fff" }}
@@ -36,10 +97,10 @@ const Timeline = () => {
             }
           >
             <h3 className="vertical-timeline-element-title !important text-[#d9dade] text-2xl text-bold decoration-[#4EE1A0] font-bold">
-              Full-Stack Software Engineer
+              Software Engineering Co-Op
             </h3>
             <h3 className="vertical-timeline-element-title text-[#d9dade]">
-              Oracle Health & AI
+              Oracle - Health & AI
             </h3>
             <h4 className="vertical-timeline-element-subtitle text-[#d9dade]">
               <i class="fa-solid fa-location-dot"></i> Burlington, MA USA
@@ -66,7 +127,7 @@ const Timeline = () => {
             }
           >
             <h3 className="vertical-timeline-element-title !important text-[#d9dade] text-2xl text-bold decoration-[#4EE1A0] font-bold">
-              Embedded Software Engineer
+              Embedded Software Engineering Co-Op
             </h3>
             <h3 className="vertical-timeline-element-title text-[#d9dade]">
               Lutron Electronics
