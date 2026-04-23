@@ -3,46 +3,41 @@ import github from "../../single-page-developer-portfolio/starter-code/assets/im
 import linkedin from "../../single-page-developer-portfolio/starter-code/assets/images/icon-linkedin.svg";
 import twitter from "../../single-page-developer-portfolio/starter-code/assets/images/icon-twitter.svg";
 
+const socials = [
+  { href: "https://github.com/ayushdj", icon: github, alt: "github" },
+  { href: "https://www.linkedin.com/in/ayush-dhananjai/", icon: linkedin, alt: "linkedin" },
+  { href: "https://twitter.com/AyushDhananjai", icon: twitter, alt: "twitter" },
+];
+
 const Footers = () => {
   return (
-    <section className=" bg-dark-gray pb-8">
-      <div className="flex flex-col  md:flex-row  justify-between items-center w-full h-20 md:h-16 text-white px-8 max-w-6xl mx-auto">
-        <div className="">
-          <h3 className="text-2xl font-bold xs:mt-2 md:mt-0">ayushdj</h3>
+    <footer className="relative border-t border-white/5 mt-12">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="flex items-center gap-2">
+          <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
+          <span className="font-bold text-white">
+            ayushdj<span className="text-accent">.</span>
+          </span>
+          <span className="text-zinc-500 text-sm ml-3">
+            © {new Date().getFullYear()} Ayush Dhananjai. Built with React & Tailwind.
+          </span>
         </div>
-
-        <ul className="flex xs:mt-4 md:mt-0">
-          <li className="px-4">
-            <a
-              href="https://github.com/ayushdj"
-              rel="noreferrer"
-              target="_blank"
-            >
-              <img src={github} alt="github" />
-            </a>
-          </li>
-
-          <li className="px-4">
-            <a
-              href="https://www.linkedin.com/in/ayush-dhananjai/"
-              rel="noreferrer"
-              target="_blank"
-            >
-              <img src={linkedin} alt="linkedin" />
-            </a>
-          </li>
-          <li className="px-4">
-            <a
-              href="https://twitter.com/AyushDhananjai"
-              rel="noreferrer"
-              target="_blank"
-            >
-              <img src={twitter} alt="twitter" />
-            </a>
-          </li>
+        <ul className="flex items-center gap-2">
+          {socials.map((s) => (
+            <li key={s.alt}>
+              <a
+                href={s.href}
+                target="_blank"
+                rel="noreferrer"
+                className="w-9 h-9 grid place-items-center rounded-full bg-white/5 border border-white/10 hover:border-accent/50 hover:bg-accent/10 transition-all"
+              >
+                <img src={s.icon} alt={s.alt} className="w-4 h-4" />
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
-    </section>
+    </footer>
   );
 };
 

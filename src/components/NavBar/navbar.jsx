@@ -1,84 +1,140 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-scroll";
+import { motion, AnimatePresence } from "framer-motion";
 import github from "../../single-page-developer-portfolio/starter-code/assets/images/icon-github.svg";
 import linkedin from "../../single-page-developer-portfolio/starter-code/assets/images/icon-linkedin.svg";
 import twitter from "../../single-page-developer-portfolio/starter-code/assets/images/icon-twitter.svg";
-import { Link } from "react-scroll";
+
+const navItems = [
+  { to: "about", label: "About" },
+  { to: "experience", label: "Experience" },
+  { to: "projects", label: "Projects" },
+  { to: "contact", label: "Contact" },
+];
+
+const socials = [
+  { href: "https://github.com/ayushdj", icon: github, alt: "github" },
+  { href: "https://www.linkedin.com/in/ayush-dhananjai/", icon: linkedin, alt: "linkedin" },
+  { href: "https://twitter.com/AyushDhananjai", icon: twitter, alt: "twitter" },
+];
 
 const NavBar = () => {
-  
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <section className="flex flex-col md:flex-row justify-between items-center w-full h-20 md:h-16 text-white px-8 max-w-7xl mx-auto">
-      <div className="mb-2">
-        <h3 className="text-2xl font-bold xs:mt-2 md:mt-0">ayushdj</h3>
-      </div>
-      <div class="relative inline-block text-center w-96 xs:mb-8 md:mb-0">
-        <div class="flex md:mt-[-20px] absolute mb-9 w-96">
-          <Link
-            to="about"
-            activeClass="active"
-            smooth={true}
-            spy={true}
-            className="flex-1 rounded transition duration-500 py-2 text-md text-white hover:bg-gray-100 hover:text-gray-900 hover:cursor-pointer"
-          >
-            About Me
-          </Link>
-          <Link
-            to="experience"
-            activeClass="active"
-            smooth={true}
-            spy={true}
-            className="flex-1 rounded transition duration-500 py-2 text-md text-white hover:bg-gray-100 hover:text-gray-900 hover:cursor-pointer"
-          >
-            Experience
-          </Link>
-          <Link
-            to="projects"
-            activeClass="active"
-            smooth={true}
-            spy={true}
-            className="flex-1 rounded transition duration-500 py-2 text-md text-white hover:bg-gray-100 hover:text-gray-900 hover:cursor-pointer"
-          >
-            Projects
-          </Link>
-          <Link
-            to="contact"
-            activeClass="active"
-            smooth={true}
-            spy={true}
-            className="flex-1 rounded transition duration-500 py-2 text-md text-white hover:bg-gray-100 hover:text-gray-900 hover:cursor-pointer"
-          >
-            Contact Me
-          </Link>
+    <motion.header
+      initial={{ y: -30, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "glass-strong" : "bg-transparent"
+      }`}
+    >
+      <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-8 h-16">
+        <Link
+          to="about"
+          smooth
+          className="flex items-center gap-2 cursor-pointer group"
+        >
+          <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
+          <span className="font-bold text-lg tracking-tight text-white group-hover:text-accent transition-colors">
+            ayushdj<span className="text-accent">.</span>
+          </span>
+        </Link>
+
+        <ul className="hidden md:flex items-center gap-1 glass rounded-full px-2 py-1.5">
+          {navItems.map((item) => (
+            <li key={item.to}>
+              <Link
+                to={item.to}
+                smooth
+                spy
+                offset={-80}
+                activeClass="!text-accent !bg-white/5"
+                className="cursor-pointer px-4 py-1.5 rounded-full text-sm font-medium text-zinc-300 hover:text-white hover:bg-white/5 transition-all"
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <div className="hidden md:flex items-center gap-2">
+          {socials.map((s) => (
+            <a
+              key={s.alt}
+              href={s.href}
+              target="_blank"
+              rel="noreferrer"
+              className="w-9 h-9 grid place-items-center rounded-full bg-white/5 border border-white/10 hover:border-accent/50 hover:bg-accent/10 transition-all"
+            >
+              <img src={s.icon} alt={s.alt} className="w-4 h-4" />
+            </a>
+          ))}
         </div>
-      </div>
 
-      <ul className="flex xs:mt-4 md:mt-0">
-        <li className="px-4">
-          <a href="https://github.com/ayushdj" rel="noreferrer" target="_blank">
-            <img src={github} alt="github" />
-          </a>
-        </li>
+        <button
+          onClick={() => setMenuOpen((v) => !v)}
+          className="md:hidden w-10 h-10 grid place-items-center rounded-full bg-white/5 border border-white/10"
+          aria-label="Toggle menu"
+        >
+          <div className="flex flex-col gap-1">
+            <span className={`h-0.5 w-5 bg-white transition-all ${menuOpen ? "rotate-45 translate-y-1.5" : ""}`} />
+            <span className={`h-0.5 w-5 bg-white transition-all ${menuOpen ? "opacity-0" : ""}`} />
+            <span className={`h-0.5 w-5 bg-white transition-all ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`} />
+          </div>
+        </button>
+      </nav>
 
-        <li className="px-4">
-          <a
-            href="https://www.linkedin.com/in/ayush-dhananjai/"
-            rel="noreferrer"
-            target="_blank"
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden glass-strong overflow-hidden"
           >
-            <img src={linkedin} alt="linkedin" />
-          </a>
-        </li>
-        <li className="px-4">
-          <a
-            href="https://twitter.com/AyushDhananjai"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <img src={twitter} alt="twitter" />
-          </a>
-        </li>
-      </ul>
-    </section>
+            <ul className="flex flex-col px-6 py-4 gap-1">
+              {navItems.map((item) => (
+                <li key={item.to}>
+                  <Link
+                    to={item.to}
+                    smooth
+                    spy
+                    offset={-80}
+                    onClick={() => setMenuOpen(false)}
+                    className="block px-4 py-3 rounded-lg text-zinc-300 hover:text-white hover:bg-white/5 cursor-pointer"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+              <li className="flex gap-2 pt-3 border-t border-white/10 mt-2">
+                {socials.map((s) => (
+                  <a
+                    key={s.alt}
+                    href={s.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-10 h-10 grid place-items-center rounded-full bg-white/5 border border-white/10"
+                  >
+                    <img src={s.icon} alt={s.alt} className="w-4 h-4" />
+                  </a>
+                ))}
+              </li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 };
 

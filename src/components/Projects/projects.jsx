@@ -1,190 +1,133 @@
-import React from "react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import front_end_web from "../../data/front_end_projects";
 import misc from "../../data/misc_projects";
 import mobile from "../../data/mobile_projects";
-import Carousel from "react-elastic-carousel";
-import "./style.css";
+
+const categories = [
+  { id: "all", label: "All" },
+  { id: "web", label: "Full-Stack / Web" },
+  { id: "mobile", label: "Mobile" },
+  { id: "misc", label: "Systems" },
+];
+
+const tagProjects = (projects, category) =>
+  projects.map((p) => ({ ...p, category }));
+
+const allProjects = [
+  ...tagProjects(front_end_web, "web"),
+  ...tagProjects(mobile, "mobile"),
+  ...tagProjects(misc, "misc"),
+];
 
 const Projects = () => {
-  const breakPoints = [
-    { width: 375, itemsToShow: 1 },
-    { width: 640, itemsToShow: 1 },
-    { width: 768, itemsToShow: 2 },
-    { width: 1024, itemsToShow: 2 },
-    { width: 1280, itemsToShow: 2 },
-    { width: 1536, itemsToShow: 3 },
-  ];
+  const [active, setActive] = useState("all");
+
+  const filtered =
+    active === "all" ? allProjects : allProjects.filter((p) => p.category === active);
 
   return (
-    <section class="p-4  max-w-7xl mx-auto" id="projects">
-      <h1 class="text-4xl text-center font-bold mb-6 text-white underline underline-offset-[5px] decoration-[#4EE1A0]">
-        Projects
-      </h1>
-      <h3 class="text-2xl text-center font-semibold text-white ">
-        Full-Stack/Front-End
-      </h3>
+    <section id="projects" className="relative py-24 px-6 md:px-8">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-10"
+        >
+          <div className="text-sm font-mono text-accent mb-3">// projects</div>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+            Things I've <span className="text-gradient">built</span>
+          </h2>
+          <p className="mt-4 text-zinc-400 max-w-xl mx-auto">
+            A selection of projects ranging from full-stack apps to low-level systems.
+          </p>
+        </motion.div>
 
-      <Carousel breakPoints={breakPoints} className="mt-2">
-        {front_end_web.map((each, idx) => (
-          <div
-            id={each.id}
-            className="flex justify-center text-center flex-wrap transition duration-500 w-full"
-            key={each.projectName}
-          >
-            <div className="max-w-sm">
-              <div className="p-4 flex-col bg-[#272728] shadow-lg rounded-lg h-full">
-                <div className="flex rounded-full text-center justify-center">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
+          {categories.map((c) => (
+            <button
+              key={c.id}
+              onClick={() => setActive(c.id)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all border ${
+                active === c.id
+                  ? "bg-accent text-black border-accent shadow-[0_0_20px_rgba(78,225,160,0.3)]"
+                  : "glass text-zinc-300 border-white/10 hover:border-white/30"
+              }`}
+            >
+              {c.label}
+            </button>
+          ))}
+        </div>
+
+        <motion.div
+          layout
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <AnimatePresence mode="popLayout">
+            {filtered.map((project, i) => (
+              <motion.article
+                key={`${project.category}-${project.id}`}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.35, delay: i * 0.03 }}
+                whileHover={{ y: -6 }}
+                className="group relative glass rounded-2xl overflow-hidden card-hover"
+              >
+                <div className="relative aspect-video overflow-hidden bg-black">
                   <img
-                    className="w-96 h-64 text-center object-fill rounded-lg shadow-xl"
-                    src={each.imageLocation}
-                    alt={"project image for " + each.projectName}
+                    src={project.imageLocation}
+                    alt={project.projectName}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute top-3 right-3">
+                    <span className="px-2 py-1 rounded-md text-[10px] font-mono uppercase bg-black/60 backdrop-blur text-accent border border-accent/30">
+                      {project.category}
+                    </span>
+                  </div>
                 </div>
-                <div className="mt-2">
-                  <h3 className="vertical-timeline-element-title justify-center !important text-[#d9dade] text-2xl text-bold font-bold">
-                    {each.projectName}
+
+                <div className="p-5">
+                  <h3 className="text-lg font-bold text-white group-hover:text-accent transition-colors">
+                    {project.projectName}
                   </h3>
-                </div>
-                <div className="mt-2">
-                  <h3 className="vertical-timeline-element-title justify-center text-[#bcbdc2]">
-                    {each.projectDescription}
-                  </h3>
-                </div>
-                <div className="mt-2">
-                  <span className="text-[#bcbdc2]">Tech: {each.skills}</span>
-                </div>
-                <div className="mx-8 mt-4 mb-4">
-                  <div className="bg-[#4EE1A0] w-[100%] h-[1px] max-w-7xl " />
-                </div>
-                <div className="mt-2">
-                  <a href={each.repoUrl} rel="noreferrer" target="_blank">
-                    <button
-                      className="bg-transparent
-                        text-white font-semibold py-2 px-4 border bg-[#2b3945]
-                         hover:border-transparent rounded
-                        hover:text-black rounded transition duration-500 py-2 text-md text-white hover:bg-gray-100"
-                      id="repo-button"
-                    >
-                      <i class="fa-brands fa-lg fa-github"></i> &nbsp;
-                      Repository
-                    </button>
+                  <p className="mt-2 text-sm text-zinc-400 line-clamp-3">
+                    {project.projectDescription}
+                  </p>
+
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {project.skills.split(",").map((s) => (
+                      <span
+                        key={s}
+                        className="px-2 py-0.5 rounded text-[10px] font-medium text-zinc-400 bg-white/5 border border-white/5"
+                      >
+                        {s.trim()}
+                      </span>
+                    ))}
+                  </div>
+
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-accent transition-colors"
+                  >
+                    <i className="fa-brands fa-github" />
+                    View repository
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="group-hover:translate-x-1 transition-transform">
+                      <path d="M7 17L17 7M17 7H8M17 7v9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
                   </a>
                 </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </Carousel>
-
-      <h3 class="text-2xl text-center font-semibold mt-8 text-white ">
-        Mobile Applications
-      </h3>
-      <Carousel breakPoints={breakPoints} className="mt-2">
-        {mobile.map((each, idx) => (
-          <div
-            id={each.id}
-            className="flex justify-center text-center flex-wrap transition duration-500 w-full"
-            key={each.projectName}
-          >
-            <div className="max-w-sm">
-              <div className="p-4 flex-col bg-[#272728] shadow-lg rounded-lg h-full">
-                <div className="flex rounded-full text-center justify-center">
-                  <img
-                    className="w-96 h-64 text-center object-fill rounded-lg shadow-xl"
-                    src={each.imageLocation}
-                    alt={"project image for " + each.projectName}
-                  />
-                </div>
-                <div className="mt-2">
-                  <h3 className="vertical-timeline-element-title justify-center !important text-[#d9dade] text-2xl text-bold font-bold">
-                    {each.projectName}
-                  </h3>
-                </div>
-                <div className="mt-2">
-                  <h3 className="vertical-timeline-element-title justify-center text-[#bcbdc2]">
-                    {each.projectDescription}
-                  </h3>
-                </div>
-                <div className="mt-2">
-                  <span className="text-[#bcbdc2]">Tech: {each.skills}</span>
-                </div>
-                <div className="mx-8 mt-4 mb-4">
-                  <div className="bg-[#4EE1A0] w-[100%] h-[1px] max-w-7xl " />
-                </div>
-                <div className="mt-2">
-                  <a href={each.repoUrl} rel="noreferrer" target="_blank">
-                    <button
-                      className="bg-transparent
-                      text-white font-semibold py-2 px-4 border bg-[#2b3945]
-                       hover:border-transparent rounded
-                      hover:text-black rounded transition duration-500 py-2 text-md text-white hover:bg-gray-100"
-                      id="repo-button"
-                    >
-                      <i class="fa-brands fa-lg fa-github"></i> &nbsp;
-                      Repository
-                    </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </Carousel>
-
-      <h3 class="text-2xl text-center font-semibold mt-8 text-white ">
-        Miscellaneous{" "}
-      </h3>
-      <Carousel breakPoints={breakPoints} className="mt-2 mb-8">
-        {misc.map((each, idx) => (
-          <div
-            id={each.id}
-            className="flex justify-center text-center flex-wrap transition duration-500 w-full"
-            key={each.projectName}
-          >
-            <div className="max-w-sm">
-              <div className="p-4 flex-col bg-[#272728] shadow-lg rounded-lg h-full">
-                <div className="flex rounded-full text-center justify-center">
-                  <img
-                    className="w-96 h-64 text-center object-fill rounded-lg shadow-xl"
-                    src={each.imageLocation}
-                    alt={"project image for " + each.projectName}
-                  />
-                </div>
-                <div className="mt-2">
-                  <h3 className="vertical-timeline-element-title justify-center !important text-[#d9dade] text-2xl text-bold font-bold">
-                    {each.projectName}
-                  </h3>
-                </div>
-                <div className="mt-2">
-                  <h3 className="vertical-timeline-element-title justify-center text-[#bcbdc2]">
-                    {each.projectDescription}
-                  </h3>
-                </div>
-                <div className="mt-2">
-                  <span className="text-[#bcbdc2]">Tech: {each.skills}</span>
-                </div>
-                <div className="mx-8 mt-4 mb-4">
-                  <div className="bg-[#4EE1A0] w-[100%] h-[1px] max-w-7xl " />
-                </div>
-                <div className="mt-2">
-                  <a href={each.repoUrl} rel="noreferrer" target="_blank">
-                    <button
-                      className="bg-transparent
-                      text-white font-semibold py-2 px-4 border bg-[#2b3945]
-                       hover:border-transparent rounded
-                      hover:text-black rounded transition duration-500 py-2 text-md text-white hover:bg-gray-100"
-                      id="repo-button"
-                    >
-                      <i class="fa-brands fa-lg fa-github"></i> &nbsp;
-                      Repository
-                    </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </Carousel>
+              </motion.article>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </div>
     </section>
   );
 };

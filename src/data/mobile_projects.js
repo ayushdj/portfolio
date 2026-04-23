@@ -1,7 +1,16 @@
 import StickItToEm from './StickItToEm.png'
 import DuoFingo from './DuoFingo.png'
+import ApexFitness from './ApexFitness.png'
 
 const mobile = [
+    {
+        "id":3,
+        "projectName":"APEX Fitness",
+        "imageLocation":ApexFitness,
+        "projectDescription": "AI-powered fitness coaching app with a RAG-based chatbot. Claude generates personalized training and meal plans, while ChromaDB retrieves relevant fitness and nutrition knowledge to ground coaching responses.",
+        "skills": "React Native, Expo, TypeScript, FastAPI, Claude API, ChromaDB, MongoDB Atlas, Docker, AWS EC2",
+        "repoUrl": "https://github.com/ayushdj/apex-fitness-backend"
+    },
     {
         "id":1,
         "projectName":"DuoFingo",

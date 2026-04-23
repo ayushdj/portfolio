@@ -1,213 +1,165 @@
 import React from "react";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
-import "react-vertical-timeline-component/style.min.css";
+import { motion } from "framer-motion";
 import OracleLogo from "../../single-page-developer-portfolio/starter-code/assets/images/oracle-svgrepo-com.svg";
 import LutronLogo from "../../single-page-developer-portfolio/starter-code/assets/images/pngegg.png";
 import Daco_768955 from "../../single-page-developer-portfolio/starter-code/assets/images/Daco_768955.png";
 import SharkNinja from "../../single-page-developer-portfolio/starter-code/assets/images/Shark_logo_black.png";
 import CohereHealthLogo from "../../single-page-developer-portfolio/starter-code/assets/images/CohereHealth.png";
-// import NortheasternSVG from './northeastern.svg'
-// import
+
+const experiences = [
+  {
+    role: "Applications Developer 2 / Scrum Master",
+    company: "Oracle — Health & AI",
+    companyUrl: "https://www.oracle.com/health",
+    date: "Jun 2024 — Present",
+    location: "Burlington, MA",
+    logo: OracleLogo,
+    logoBg: "#C74634",
+    current: true,
+    tags: ["JavaScript", "Node.js", "Java", "MySQL", "Docker", "Kubernetes", "Jenkins"],
+  },
+  {
+    role: "Software Engineer I",
+    company: "Cohere Health",
+    companyUrl: "https://coherehealth.com/",
+    date: "Oct 2023 — Jun 2024",
+    location: "Boston, MA",
+    logo: CohereHealthLogo,
+    logoBg: "#ffffff",
+    tags: ["React", "Node.js", "Groovy/Grails", "Micronaut", "MongoDB", "AWS", "Cypress"],
+  },
+  {
+    role: "Software Engineering Co-Op",
+    company: "Oracle — Health & AI",
+    companyUrl: "https://www.oracle.com/health",
+    date: "Jun 2022 — Dec 2022",
+    location: "Burlington, MA",
+    logo: OracleLogo,
+    logoBg: "#C74634",
+    tags: ["JavaScript", "Knockout.js", "Java", "J2EE", "Docker", "Jenkins"],
+  },
+  {
+    role: "Embedded Software Engineering Co-Op",
+    company: "Lutron Electronics",
+    companyUrl: "https://www.lutron.com",
+    date: "Jan 2022 — Jun 2022",
+    location: "Boston, MA",
+    logo: LutronLogo,
+    logoBg: "#2196F3",
+    tags: ["C++", "Python", "Jenkins", "Bitbucket"],
+  },
+  {
+    role: "Graduate Teaching Assistant",
+    company: "Northeastern University",
+    companyUrl: "https://www.khoury.northeastern.edu",
+    date: "Jan 2021 — Dec 2021",
+    location: "Boston, MA",
+    logo: Daco_768955,
+    logoBg: "#C8102E",
+    tags: ["Java", "Python", "OOP", "Mentoring"],
+  },
+  {
+    role: "Data Science Intern",
+    company: "SharkNinja",
+    companyUrl: "https://www.sharkninja.com/",
+    date: "Aug 2019 — Jul 2020",
+    location: "Needham, MA",
+    logo: SharkNinja,
+    logoBg: "#ffffff",
+    tags: ["Python", "Machine Learning", "JupyterLab", "Data Analysis"],
+  },
+];
 
 const Timeline = () => {
   return (
-    <div class="p-4 mt-4" id="experience">
-      <h1 class="text-4xl text-center font-bold mb-6 text-white underline underline-offset-[5px] decoration-[#4EE1A0]">
-        Experience
-      </h1>
-      <section className="max-w-6xl mx-auto mt-12 mb-16">
-        <VerticalTimeline>
-        <VerticalTimelineElement
-            className="vertical-timeline-element--work"
-            contentStyle={{ background: "#272728", color: "#fff" }}
-            contentArrowStyle={{ borderRight: "7px solid  #272728" }}
-            date="June 2024 - Present"
-            iconStyle={{ background: "#C74634", color: "#fff" }}
-            icon={
-              <a
-                href="https://www.oracle.com/health"
-                target="_blank"
-                rel="noreferrer"
+    <section id="experience" className="relative py-24 px-6 md:px-8">
+      <div className="max-w-5xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <div className="text-sm font-mono text-accent mb-3">// career</div>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+            Where I've <span className="text-gradient">worked</span>
+          </h2>
+          <p className="mt-4 text-zinc-400 max-w-xl mx-auto">
+            A timeline of roles spanning full-stack, embedded, and data engineering.
+          </p>
+        </motion.div>
+
+        <div className="relative">
+          {/* Vertical line */}
+          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+
+          <div className="space-y-8">
+            {experiences.map((exp, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5, delay: i * 0.05 }}
+                className={`relative flex md:items-center ${
+                  i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                }`}
               >
-                <img src={OracleLogo} alt="oracle logo"></img>
-              </a>
-            }
-          >
-            <h3 className="vertical-timeline-element-title !important text-[#d9dade] text-2xl text-bold decoration-[#4EE1A0] font-bold">
-              Applications Developer 2/Scrum Master
-            </h3>
-            <h3 className="vertical-timeline-element-title text-[#d9dade]">
-              Oracle - Health & AI
-            </h3>
-            <h4 className="vertical-timeline-element-subtitle text-[#d9dade]">
-              <i class="fa-solid fa-location-dot"></i> Burlington, MA USA
-            </h4>
-            <p className="text-[#bcbdc2]">
-              JavaScript, HTML, CSS, Node.js, Knockout.js, Java, MySQL, J2EE,
-              REST API's, Docker, Kubernetes, TestNG, Jenkins, GitLab, Jira, Confluence
-            </p>
-          </VerticalTimelineElement>
-        <VerticalTimelineElement
-            className="vertical-timeline-element--work"
-            contentStyle={{ background: "#272728", color: "#fff" }}
-            contentArrowStyle={{ borderRight: "7px solid  #272728" }}
-            date="October 2023 - June 2024"
-            iconStyle={{ background: "#FFFFFF", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}
-            icon={
-              <a
-                href="https://coherehealth.com/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img src={CohereHealthLogo} alt="oracle logo"></img>
-              </a>
-            }
-          >
-            <h3 className="vertical-timeline-element-title !important text-[#d9dade] text-2xl text-bold decoration-[#4EE1A0] font-bold">
-              Software Engineer 1
-            </h3>
-            <h3 className="vertical-timeline-element-title text-[#d9dade]">
-              Cohere Health
-            </h3>
-            <h4 className="vertical-timeline-element-subtitle text-[#d9dade]">
-              <i class="fa-solid fa-location-dot"></i> Boston, MA USA
-            </h4>
-            <p className="text-[#bcbdc2]">
-              JavaScript, HTML, CSS, Node.js, React.js, Groovy/Grails, Micronaut,
-              MongoDB, AWS S3/EC2, Cypress, Kibana, Sentry, GitHub, Jira, Confluence
-            </p>
-          </VerticalTimelineElement>
-          <VerticalTimelineElement
-            className="vertical-timeline-element--work"
-            contentStyle={{ background: "#272728", color: "#fff" }}
-            contentArrowStyle={{ borderRight: "7px solid  #272728" }}
-            date="June 2022 - December 2022"
-            iconStyle={{ background: "#C74634", color: "#fff" }}
-            icon={
-              <a
-                href="https://www.oracle.com/health"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img src={OracleLogo} alt="oracle logo"></img>
-              </a>
-            }
-          >
-            <h3 className="vertical-timeline-element-title !important text-[#d9dade] text-2xl text-bold decoration-[#4EE1A0] font-bold">
-              Software Engineering Co-Op
-            </h3>
-            <h3 className="vertical-timeline-element-title text-[#d9dade]">
-              Oracle - Health & AI
-            </h3>
-            <h4 className="vertical-timeline-element-subtitle text-[#d9dade]">
-              <i class="fa-solid fa-location-dot"></i> Burlington, MA USA
-            </h4>
-            <p className="text-[#bcbdc2]">
-              JavaScript, HTML, CSS, Node.js, Knockout.js, Java, MySQL, J2EE,
-              REST API's, Docker, Jenkins, GitLab, Jira, Confluence
-            </p>
-          </VerticalTimelineElement>
-          <VerticalTimelineElement
-            className="vertical-timeline-element--work"
-            contentStyle={{ background: "#272728", color: "#fff" }}
-            contentArrowStyle={{ borderRight: "7px solid  #272728" }}
-            date="January 2022 - June 2022"
-            iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
-            icon={
-              <a
-                href="https://www.lutron.com/en-US/pages/default.aspx"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img src={LutronLogo} alt="Lutron logo"></img>
-              </a>
-            }
-          >
-            <h3 className="vertical-timeline-element-title !important text-[#d9dade] text-2xl text-bold decoration-[#4EE1A0] font-bold">
-              Embedded Software Engineering Co-Op
-            </h3>
-            <h3 className="vertical-timeline-element-title text-[#d9dade]">
-              Lutron Electronics
-            </h3>
-            <h4 className="vertical-timeline-element-subtitle text-[#d9dade]">
-              <i class="fa-solid fa-location-dot"></i> Boston, MA USA
-            </h4>
-            <p className="text-[#bcbdc2]">
-              C++, Python, Jenkins, Bitbucket, Jira, Confleunce
-            </p>
-          </VerticalTimelineElement>
-          <VerticalTimelineElement
-            className="vertical-timeline-element--work"
-            contentStyle={{ background: "#272728", color: "#fff" }}
-            contentArrowStyle={{ borderRight: "7px solid  #272728" }}
-            date="January 2021 - December 2021"
-            iconStyle={{ background: "#C8102E", color: "#fff" }}
-            icon={
-              <a
-                href="https://www.khoury.northeastern.edu"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img src={Daco_768955} alt="Northeastern logo"></img>
-              </a>
-            }
-          >
-            <h3 className="vertical-timeline-element-title !important text-[#d9dade] text-2xl text-bold decoration-[#4EE1A0] font-bold">
-              Graduate Teaching Assistant
-            </h3>
-            <h3 className="vertical-timeline-element-title text-[#d9dade]">
-              Northeastern University
-            </h3>
-            <h4 className="vertical-timeline-element-subtitle text-[#d9dade]">
-              <i class="fa-solid fa-location-dot"></i> Boston, MA USA
-            </h4>
-            <p className="text-[#bcbdc2]">
-              Java, Python, Objected Oriented Design, Mentoring
-            </p>
-          </VerticalTimelineElement>
-          <VerticalTimelineElement
-            className="vertical-timeline-element--work"
-            contentStyle={{ background: "#272728", color: "#fff" }}
-            contentArrowStyle={{ borderRight: "7px solid  #272728" }}
-            date="August 2019 - July 2020"
-            iconStyle={{ background: "#54c2c2", color: "#fff" }}
-            icon={
-              <a
-                href="https://www.sharkninja.com/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img
-                  className="xl:mt-5 lg:mt-4 sm:mt-4 md:mt-4 xs:mt-4"
-                  src={SharkNinja}
-                  alt="SharkNinja logo"
-                ></img>
-              </a>
-            }
-          >
-            <h3 className="vertical-timeline-element-title !important text-[#d9dade] text-2xl text-bold decoration-[#4EE1A0] font-bold">
-              Data Science Intern
-            </h3>
-            <h3 className="vertical-timeline-element-title text-[#d9dade]">
-              SharkNinja
-            </h3>
-            <h4 className="vertical-timeline-element-subtitle text-[#d9dade]">
-              <i class="fa-solid fa-location-dot"></i> Needham, MA USA
-            </h4>
-            <p className="text-[#bcbdc2]">
-              Python, Machine Learning, Data Analysis, JupyterLab, GitHub, Jira,
-              Confluence
-            </p>
-          </VerticalTimelineElement>
-        </VerticalTimeline>
-      </section>
-      <div className="mx-8">
-        <div className="bg-white h-[1px] max-w-7xl mb-16 mx-auto" />
+                {/* Logo circle */}
+                <div className="absolute left-6 md:left-1/2 -translate-x-1/2 z-10">
+                  <a
+                    href={exp.companyUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block w-12 h-12 rounded-full border-2 border-[#0a0a0a] shadow-lg grid place-items-center p-2 hover:scale-110 transition-transform"
+                    style={{ background: exp.logoBg }}
+                  >
+                    <img src={exp.logo} alt={exp.company} className="w-full h-full object-contain" />
+                  </a>
+                  {exp.current && (
+                    <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-accent" />
+                    </span>
+                  )}
+                </div>
+
+                {/* Card */}
+                <div className={`w-full md:w-[calc(50%-3rem)] pl-20 md:pl-0 ${i % 2 === 0 ? "md:pr-12" : "md:pl-12"}`}>
+                  <div className="glass card-hover rounded-2xl p-6">
+                    <div className="flex items-center gap-2 text-xs font-mono text-accent mb-2">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" />
+                        <line x1="16" y1="2" x2="16" y2="6" />
+                        <line x1="8" y1="2" x2="8" y2="6" />
+                      </svg>
+                      {exp.date}
+                    </div>
+                    <h3 className="text-xl font-bold text-white">{exp.role}</h3>
+                    <div className="text-zinc-400 text-sm mt-1 flex items-center gap-2">
+                      <span>{exp.company}</span>
+                      <span className="text-zinc-600">•</span>
+                      <span>{exp.location}</span>
+                    </div>
+                    <div className="mt-4 flex flex-wrap gap-1.5">
+                      {exp.tags.map((t) => (
+                        <span
+                          key={t}
+                          className="px-2 py-0.5 rounded-md text-[10px] font-medium bg-accent/10 text-accent border border-accent/20"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
