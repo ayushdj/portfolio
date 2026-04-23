@@ -81,7 +81,7 @@ const Timeline = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <div className="text-sm font-mono text-accent mb-3">// career</div>
+          <div className="text-sm font-mono text-accent mb-3">{"// career"}</div>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
             Where I've <span className="text-gradient">worked</span>
           </h2>

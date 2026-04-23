@@ -36,7 +36,7 @@ const Projects = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-10"
         >
-          <div className="text-sm font-mono text-accent mb-3">// projects</div>
+          <div className="text-sm font-mono text-accent mb-3">{"// projects"}</div>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
             Things I've <span className="text-gradient">built</span>
           </h2>
