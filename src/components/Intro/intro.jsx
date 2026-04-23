@@ -125,7 +125,7 @@ const Intro = () => {
               <div className="h-2 w-2 rounded-full bg-accent animate-pulse" />
               <div className="text-xs">
                 <div className="font-semibold text-white">Based in Boston, MA</div>
-                <div className="text-zinc-400">Currently @ Oracle Health</div>
+                <div className="text-zinc-400">Currently @ Oracle</div>
               </div>
             </div>
           </div>
